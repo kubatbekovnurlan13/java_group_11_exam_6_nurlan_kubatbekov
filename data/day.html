@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Day</title>
+    <link href="css/employees.css" rel="stylesheet">
+
+</head>
+<body>
+<h3>List of Tasks:</h3>
+
+<div class="table flex flex-col">
+    <div class="header flex">
+        <div class="column">
+            ##
+        </div>
+        <div class="column">
+            Name
+        </div>
+        <div class="column">
+            Type
+        </div>
+        <div class="column">
+            Desc
+        </div>
+        <div class="column">
+            Delete
+        </div>
+    </div>
+
+    <#list tasks as task>
+    <div class="row ${task?item_parity} flex">
+        <div class="column">
+            ${task?counter}
+        </div>
+        <div class="column">
+            ${task.name}
+        </div>
+
+        <div class="column">
+            <#if task.type == 1>
+            обычная задача
+            <#elseif task.type == 2>
+            срочное дело
+            <#elseif task.type == 3>
+            работа
+            <#elseif task.type == 4>
+            покупки
+            <#else>
+            прочее
+              </#if>
+           </div>
+    <div class="column">
+            ${task.desc}
+        </div>
+        <div class="column">
+            <a href="/delete?id=${task.idTask}">Delete task</a>
+        </div>
+    </div>
+
+</#list>
+
+<#list idDay as day>
+<a href="/addTask?idDay=${day.idDay}">Add new one</a>
+</#list>
+</div>
+
+</body>
+</html>

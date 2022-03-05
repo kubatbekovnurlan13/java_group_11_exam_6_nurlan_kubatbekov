@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Add Task</title>
+    <link rel="stylesheet" href="css/forms.css">
+</head>
+
+<body>
+<main>
+    <#list idDay as day>
+    <form action="/addTask?idDay=${day.idDay}" method="post">
+        <fieldset>
+            <div class="legend">
+                <p>Welcome to Add Task Form!</p>
+            </div>
+
+            <div class="form-element">
+                <label for="desc">desc</label>
+                <input type="text" name="desc" id="desc" placeholder="description" required autofocus>
+            </div>
+
+            <div class="form-element">
+            <label for="type">Type</label>
+            <select name="type" id="type" required autofocus> <!--Supplement an id here instead of using 'name'-->
+                <option value="1">обычная задача</option>
+                <option value="2" selected>срочное дело</option>
+                <option value="3">работа</option>
+                <option value="4">покупки</option>
+                <option value="5">прочее</option>
+            </select>
+            </div>
+
+            <div class="form-element">
+                <label for="user-name">name</label>
+                <input type="text" name="name" id="user-name" placeholder="name" required autofocus>
+            </div>
+            <div class="form-element">
+                <button class="register-button" type="submit">Add</button>
+            </div>
+        </fieldset>
+    </form>
+    </#list>
+</main>
+</body>
+
+</html>

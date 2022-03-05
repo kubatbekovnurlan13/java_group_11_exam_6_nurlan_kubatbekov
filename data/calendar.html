@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"
+          name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Calendar</title>
+    <link href="css/employees.css" rel="stylesheet">
+
+</head>
+<body>
+<h3>Calendar: </h3>
+
+<div class="table flex flex-col">
+    <div class="header flex">
+        <div class="column">
+            ##
+        </div>
+        <div class="column">
+            Date
+        </div>
+        <div class="column">
+            Day of Week
+        </div>
+        <div class="column">
+            Tasks
+        </div>
+        <div class="column">
+            More info
+        </div>
+    </div>
+
+    <#list days as day>
+    <div class="row ${day?item_parity} flex">
+        <div class="column">
+            ${day?counter}
+        </div>
+        <div class="column">
+            ${day.date} ${day.today?then("is nowday! "," ")}
+        </div>
+        <div class="column">
+            ${day.dayOfWeek}
+        </div>
+        <div class="column">
+            <#list day.tasks as task>
+            <#if task.taskType == 1>
+            обычная задача,
+            <#elseif task.taskType == 2>
+            срочное дело,
+            <#elseif task.taskType == 3>
+            работа,
+            <#elseif task.taskType == 4>
+            покупки,
+            <#else>
+            прочее,
+            </#if>
+        </#list>
+        </div>
+        <div class="column">
+            <a href="/day?id=${day.idDay}">More...</a>
+        </div>
+    </div>
+</#list>
+</div>
+
+</body>
+</html>
